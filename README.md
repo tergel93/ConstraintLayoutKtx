@@ -1,4 +1,4 @@
-Some Kotlin extension methods to change layout constraints programmatically easily
+Some Kotlin extension methods to change layout constraints programmatically
 # Sample
 
 ```kotlin
