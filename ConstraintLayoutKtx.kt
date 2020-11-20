@@ -1,3 +1,4 @@
+@file:Suppress("FunctionName", "NOTHING_TO_INLINE")
 package me.tergel.constraintlayoutktx
 
 import android.view.View
@@ -10,92 +11,96 @@ fun ConstraintLayout.applyConstraint(operations: Constraint.() -> Unit) {
     constraint.applyTo(this)
 }
 
-class Constraint(layout: ConstraintLayout) : ConstraintSet() {
+class Constraint(val layout: ConstraintLayout) : ConstraintSet() {
     init {
         clone(layout)
     }
 
-    fun <V : View> V.start_to_start_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.START, targetId(), ConstraintSet.START)
+    inline fun <V : View> V.start_toStartOf(targetId: Int, margin: Int = 0) {
+        connect(this.id, START, targetId, START, margin)
     }
 
-    fun <V : View> V.start_to_end_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.START, targetId(), ConstraintSet.END)
+    inline fun <V : View> V.start_toEndOf(targetId: Int, margin: Int = 0) {
+        connect(this.id, START, targetId, END, margin)
     }
 
-    fun <V : View> V.end_to_end_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.END, targetId(), ConstraintSet.END)
+    inline fun <V : View> V.end_toEndOf(targetId: Int, margin: Int = 0) {
+        connect(this.id, END, targetId, END, margin)
     }
 
-    fun <V : View> V.end_to_start_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.END, targetId(), ConstraintSet.START)
+    inline fun <V : View> V.end_toStartOf(targetId: Int, margin: Int = 0) {
+        connect(this.id, END, targetId, START, margin)
     }
 
-    fun <V : View> V.top_to_top_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.TOP, targetId(), ConstraintSet.TOP)
+    inline fun <V : View> V.top_toTopOf(targetId: Int, margin: Int = 0) {
+        connect(this.id, TOP, targetId, TOP, margin)
     }
 
-    fun <V : View> V.top_to_bottom_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.TOP, targetId(), ConstraintSet.BOTTOM)
+    inline fun <V : View> V.top_toBottomOf(targetId: Int, margin: Int = 0) {
+        connect(this.id, TOP, targetId, BOTTOM, margin)
     }
 
-    fun <V : View> V.bottom_to_top_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.BOTTOM, targetId(), ConstraintSet.TOP)
+    inline fun <V : View> V.bottom_toTopOf(targetId: Int, margin: Int = 0) {
+        connect(this.id, BOTTOM, targetId, TOP, margin)
     }
 
-    fun <V : View> V.bottom_to_bottom_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.BOTTOM, targetId(), ConstraintSet.BOTTOM)
+    inline fun <V : View> V.bottom_toBottomOf(targetId: Int, margin: Int = 0) {
+        connect(this.id, BOTTOM, targetId, BOTTOM, margin)
     }
 
-    fun <V : View> V.start_to_start_of_parent() {
-        connect(this.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
+    inline fun <V : View> V.start_toStartOfParent(margin: Int = 0) {
+        connect(this.id, START, PARENT_ID, START, margin)
     }
 
-    fun <V : View> V.start_to_end_of_parent() {
-        connect(this.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.END)
+    inline fun <V : View> V.start_toEndOfParent(margin: Int = 0) {
+        connect(this.id, START, PARENT_ID, END, margin)
     }
 
-    fun <V : View> V.end_to_end_of_parent() {
-        connect(this.id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+    inline fun <V : View> V.end_toEndOfParent(margin: Int = 0) {
+        connect(this.id, END, PARENT_ID, END, margin)
     }
 
-    fun <V : View> V.end_to_start_of_parent() {
-        connect(this.id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.START)
+    inline fun <V : View> V.end_toStartOfParent(margin: Int = 0) {
+        connect(this.id, END, PARENT_ID, START, margin)
     }
 
-    fun <V : View> V.top_to_top_of_parent() {
-        connect(this.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+    inline fun <V : View> V.top_toTopOfParent(margin: Int = 0) {
+        connect(this.id, TOP, PARENT_ID, TOP, margin)
     }
 
-    fun <V : View> V.top_to_bottom_of_parent() {
-        connect(this.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+    inline fun <V : View> V.top_toBottomOfParent(margin: Int = 0) {
+        connect(this.id, TOP, PARENT_ID, BOTTOM, margin)
     }
 
-    fun <V : View> V.bottom_to_top_of_parent() {
-        connect(this.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+    inline fun <V : View> V.bottom_toTopOfParent(margin: Int = 0) {
+        connect(this.id, BOTTOM, PARENT_ID, TOP, margin)
     }
 
-    fun <V : View> V.bottom_to_bottom_of_parent() {
-        connect(this.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+    inline fun <V : View> V.bottom_toBottomOfParent(margin: Int = 0) {
+        connect(this.id, BOTTOM, PARENT_ID, BOTTOM, margin)
     }
 
-    fun <V : View> V.clearStart() {
-        clear(this.id, ConstraintSet.START)
+    inline fun <V : View> V.clearStart() {
+        clear(this.id, START)
     }
 
-    fun <V : View> V.clearEnd() {
-        clear(this.id, ConstraintSet.END)
+    inline fun <V : View> V.clearEnd() {
+        clear(this.id, END)
     }
 
-    fun <V : View> V.clearTop() {
-        clear(this.id, ConstraintSet.TOP)
+    inline fun <V : View> V.clearTop() {
+        clear(this.id, TOP)
     }
 
-    fun <V : View> V.clearBottom() {
-        clear(this.id, ConstraintSet.BOTTOM)
+    inline fun <V : View> V.clearBottom() {
+        clear(this.id, BOTTOM)
     }
 
-    fun <V : View> V.baseline_to_baseline_of(targetId: () -> Int) {
-        connect(this.id, ConstraintSet.BASELINE, targetId(), ConstraintSet.BASELINE)
+    inline fun <V : View> V.baseline_toBaselineOf(targetId: Int) {
+        connect(this.id, BASELINE, targetId, BASELINE)
+    }
+
+    inline fun <V : View> V.widthPercent(percent: Float) {
+        constrainPercentWidth(this.id, percent)
     }
 }
