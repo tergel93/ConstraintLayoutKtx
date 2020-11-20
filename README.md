@@ -8,30 +8,20 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         constraintLayout = findViewById(R.id.wrapperConstraintLayout)
-        val textView = findViewById(R.id.textView)
-        textView.setOnClickListener { toLeft(it) }
+        val textView = findViewById(R.id.textView) // by default, this view align left && top of parent
+        textView.setOnClickListener { toRightBottom(it) }
     }
-
-    fun toLeft(view: View) {
+    
+    // let's make it align to right && bottom of parent
+    fun toRightBottom(view: View) {
         constraintLayout.applyConstraint {
             view.apply {
-                clearEnd() // remove end_to_end_of_parent constraint
-                start_to_start_of_parent()
+                clearStart() // remove left constraint
+                clearTop()   // remove top constraint
+                end_toEndOfParent() // add right constraint
+                bottom_toBottomOfParent() // add bottom constraint
             }
         }
-        TransitionManager.beginDelayedTransition(constraintLayout)
-        view.setOnClickListener { toRight(view) }
-    }
-
-
-    fun toRight(view: View) {
-        constraintLayout.applyConstraint {
-            view.apply {
-                clearStart()
-                end_to_end_of_parent()
-            }
-        }
-        view.setOnClickListener { toLeft(view) }
     }
 }
 ```
