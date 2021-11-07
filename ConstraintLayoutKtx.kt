@@ -5,7 +5,7 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 
-fun ConstraintLayout.applyConstraint(operations: Constraint.() -> Unit) {
+inline fun ConstraintLayout.applyConstraint(operations: Constraint.() -> Unit) {
     val constraint = Constraint(this)
     operations(constraint)
     constraint.applyTo(this)
